@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Cantinho</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #ff7eb9;
+            --secondary-color: #7afcff;
+            --accent-color: #ff65a3;
+            --light-color: #fff9fb;
+            --dark-color: #333;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background: linear-gradient(135deg, #fff9fb 0%, #ffeef6 100%);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hearts-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 20px;
+            animation: float 5s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* Main Sections */
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--accent-color);
+            font-size: 2.8rem;
+        }
+        
+        /* About Us */
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .couple-img {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .couple-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .couple-img:hover img {
+            transform: scale(1.03);
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        /* Memories */
+        .memories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .memory-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .memory-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .memory-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .memory-content {
+            padding: 20px;
+        }
+        
+        .memory-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        
+        /* Messages */
+        .messages-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .message {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .message::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            transform: rotate(45deg);
+        }
+        
+        .message-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .message-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .message h3 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+        }
+        
+        /* Promises Section */
+        .promises-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .promises-list {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .promises-list li {
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(to right, #fff9fb, #ffeef6);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            border-left: 4px solid var(--primary-color);
+            text-align: left;
+        }
+        
+        .promise-icon {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+        
+        /* Gallery */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 250px;
+            position: relative;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .footer-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .footer-text h3 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .date-count {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        .footer-heart {
+            color: #ffeb3b;
+            font-size: 2rem;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .about-container, .footer-content {
+                flex-direction: column;
+            }
+            
+            .promises-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="hearts-container" id="heartsContainer"></div>
+        <div class="container header-content">
+            <h1>Nosso Cantinho</h1>
+    </header>
+
+    <!-- Sobre Nós -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Nossa História</h2>
+            <div class="about-container">
+                <div class="couple-img">
+                    <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Casal feliz">
+                </div>
+                <div class="about-text">
+                    <p>Aqui é um lugar para guardar todas as nossas memórias, momentos felizes e planos para o futuro.</p>
+                    <p>Aqui celebramos cada dia ao lado um do outro, cada risada compartilhada, cada conquista e cada desafio superado juntos.</p>
+                    <p>Que este site seja um reflexo do nosso amor, que cresce a cada dia e se fortalece com cada experiência vivida lado a lado.</p>
+                    <p>Eu Te amo mais do que palavras podem expressar, e este espaço é apenas uma pequena demonstração desse sentimento infinito.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossas Memórias -->
+    <section id="memories" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">Nossas Memórias</h2>
+            <div class="memories-container">
+                <div class="memory-card">
+                    <a href="https://postimg.cc/9D0j85zq" target="_blank"><img src="https://i.postimg.cc/fRjTbMN5/IMG_0435.jpg" alt="IMG_0435"></a>
+                    <div class="memory-content">
+                        <h3>Primeira Vez em Casa</h3>
+                        <p>Aquele dia especial quando você veio na minha casa na primeira vez, nossas vidas se cruzaram e tudo mudou para melhor. Lembro de cada detalhe como se fosse ontem.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria de Fotos -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Nossa Galeria</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <a href="https://postimg.cc/5j4Kq5XC" target="_blank"><img src="https://i.postimg.cc/HWXGmBHB/3e064d8c_4bad_4baa_ac7d_5e331d51ba92_(1).jpg" alt="3e064d8c_4bad_4baa_ac7d_5e331d51ba92_(1)"></a>
+                    <div class="gallery-overlay">
+                        <p>Momento Inesquecível</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <a href="https://postimg.cc/5j4Kq5Xb" target="_blank"><img src="https://i.postimg.cc/66nsKYw2/03aabba2_ed0b_426b_a89f_13d3d669ccc9_(1).jpg" alt="03aabba2_ed0b_426b_a89f_13d3d669ccc9_(1)"></a>
+                    <div class="gallery-overlay">
+                        <p>Risadas Compartilhadas</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <a href="https://postimg.cc/BtS7c5jD" target="_blank"><img src="https://i.postimg.cc/7P0v4mDB/71afa052_1c9d_4dd2_baeb_34f518c5f2f1.jpg" alt="71afa052_1c9d_4dd2_baeb_34f518c5f2f1"></a>
+                    <div class="gallery-overlay">
+                        <p>Aventuras Juntos</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <a href="https://postimg.cc/c6xkM7vw" target="_blank"><img src="https://i.postimg.cc/L4LdSNRC/967b7974_0242_4916_8938_855d463983a3.jpg" alt="967b7974_0242_4916_8938_855d463983a3"></a>
+                    <div class="gallery-overlay">
+                        <p>Olhares que Falam</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mensagens -->
+    <section id="messages" style="background-color: #f9f9f9;">
+        <div class="container">
+            <h2 class="section-title">Mensagens de Coração</h2>
+            <div class="messages-container">
+                <div class="message">
+                    <div class="message-header">
+                        <div class="message-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Para Meu Amor</h3>
+                    </div>
+                    <p>Quero que saiba o quanto você é especial para mim. Cada momento ao seu lado é um presente que guardo com carinho no meu coração. Obrigado por ser minha companheira, minha melhor amiga e minha inspiração a cada dia. Te amo infinitamente!</p>
+                </div>
+                <div class="message">
+                    <div class="message-header">
+                        <div class="message-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Nossos Sonhos</h3>
+                    </div>
+                    <p>Mal posso esperar para construir nosso futuro juntos. Sonho com nossa casa, nossas viagens, nossas conquistas e todas as experiências que ainda vamos viver lado a lado. Com você ao meu lado, sei que qualquer sonho é possível alcançar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <h3>Para Sempre Juntos</h3>
+                    <p>Este site foi criado com todo o carinho para celebrar nosso amor.</p>
+                    <div class="date-count" id="dateCount"></div>
+                </div>
+                <div>
+                    <i class="fas fa-heart footer-heart"></i>
+                </div>
+            </div>
+            <p style="margin-top: 30px;">&copy; 2025 - Nosso Cantinho | Feito com ❤️ por Bruno Frigo</p>
+        </div>
+    </footer>
+
+    <script>
+        // Gerar corações flutuantes no header
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartCount = 20;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤';
+                
+                // Posição aleatória
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = 3 + Math.random() * 4;
+                
+                heart.style.left = `${left}%`;
+                heart.style.top = `${top}%`;
+                heart.style.animationDelay = `${delay}s`;
+                heart.style.animationDuration = `${duration}s`;
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Calcular dias juntos (data exemplo - ajuste para a data real do relacionamento)
+        function calculateDaysTogether() {
+            // Altere esta data para a data do início do relacionamento
+            const startDate = new Date('2025-10-21');
+            const today = new Date();
+            const diffTime = Math.abs(today - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('dateCount').innerHTML = `Juntos há ${diffDays} dias de puro amor!`;
+        }
+        
+        // Efeito especial nas promessas
+        function setupPromisesEffect() {
+            const promises = document.querySelectorAll('.promises-list li');
+            
+            promises.forEach((promise, index) => {
+                // Adicionar animação de entrada
+                promise.style.opacity = '0';
+                promise.style.transform = 'translateX(-20px)';
+                
+                setTimeout(() => {
+                    promise.style.transition = 'opacity 0.5s, transform 0.5s';
+                    promise.style.opacity = '1';
+                    promise.style.transform = 'translateX(0)';
+                }, 300 + (index * 200));
+                
+                // Efeito ao passar o mouse
+                promise.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                });
+                
+                promise.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        }
+        
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            calculateDaysTogether();
+            setupPromisesEffect();
+            
+            // Adicionar algum conteúdo interativo
+            const messages = document.querySelectorAll('.message');
+            messages.forEach(message => {
+                message.addEventListener('click', function() {
+                    this.style.transform = this.style.transform ? '' : 'scale(1.02)';
+                });
+            });
+            
+            // Efeito nas fotos da galeria
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.querySelector('img').src;
+                    const imgTitle = this.querySelector('.gallery-overlay p').textContent;
+                    
+                    // Criar um modal simples para visualizar a imagem
+                    const modal = document.createElement('div');
+                    modal.style.position = 'fixed';
+                    modal.style.top = '0';
+                    modal.style.left = '0';
+                    modal.style.width = '100%';
+                    modal.style.height = '100%';
+                    modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+                    modal.style.display = 'flex';
+                    modal.style.justifyContent = 'center';
+                    modal.style.alignItems = 'center';
+                    modal.style.zIndex = '1000';
+                    
+                    const modalImg = document.createElement('img');
+                    modalImg.src = imgSrc;
+                    modalImg.style.maxWidth = '90%';
+                    modalImg.style.maxHeight = '90%';
+                    modalImg.style.borderRadius = '10px';
+                    
+                    const closeBtn = document.createElement('button');
+                    closeBtn.innerHTML = '×';
+                    closeBtn.style.position = 'absolute';
+                    closeBtn.style.top = '20px';
+                    closeBtn.style.right = '30px';
+                    closeBtn.style.fontSize = '40px';
+                    closeBtn.style.color = 'white';
+                    closeBtn.style.background = 'none';
+                    closeBtn.style.border = 'none';
+                    closeBtn.style.cursor = 'pointer';
+                    
+                    modal.appendChild(modalImg);
+                    modal.appendChild(closeBtn);
+                    document.body.appendChild(modal);
+                    
+                    closeBtn.addEventListener('click', function() {
+                        document.body.removeChild(modal);
+                    });
+                    
+                    modal.addEventListener('click', function(e) {
+                        if (e.target === modal) {
+                            document.body.removeChild(modal);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
